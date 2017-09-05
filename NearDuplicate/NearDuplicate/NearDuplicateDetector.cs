@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -31,15 +32,21 @@ namespace NearDuplicate
             return overlap / union;
         }
 
-        public bool NearDuplicate(string a, string b)
+        public float NearDuplicate(string a, string b)
         {
 
             var aShingles = Shinglefy(a);
             var bShingles = Shinglefy(b);
-            
+
+            var hashesA = aShingles.Select(stringse => stringse.GetHashCode()).ToList();
+            var hashesB = bShingles.Select(stringse => stringse.GetHashCode()).ToList();
 
 
-            return false;
+
+            Console.WriteLine(hashesA.Min());
+            Console.WriteLine(hashesB.Min());
+
+            return 0f;
         }
         
         private List<string[]> Shinglefy(string s)

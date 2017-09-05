@@ -14,13 +14,11 @@ namespace NearDuplicate
             var firstString = "do not worry about your difficulties in mathematics.";
             var secondString = "i would not worry about your difficulties, you can easily learn what is needed.";
 
-            var start = DateTime.Now;
+            //var res = new NearDuplicateDetector(3).JaccardSimilarity(firstString, secondString);
 
-            var res = new NearDuplicateDetector(3).JaccardSimilarity(firstString, secondString);
+            var res = new NearDuplicateDetector(3).NearDuplicate(firstString, secondString);
 
-            var end = DateTime.Now;
-
-            Console.WriteLine($"Near Duplicate: {res:F}, {end - start}");
+            Console.WriteLine($"Near Duplicate: {res:F}");
             Console.ReadKey();
         }
     }
