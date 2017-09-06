@@ -11,6 +11,7 @@ namespace NearDuplicate
     public class NearDuplicateDetector
     {
         private readonly int _singleLength;
+        int count;
 
         public NearDuplicateDetector(int sideLength = 4)
         {
@@ -63,10 +64,10 @@ namespace NearDuplicate
 
             for (int i = 0; i < 5; i++)
             {
-                var h = rand.Next();
+                var seed = rand.Next();
 
-                hashesA = hashesA.Select(s => int.Parse(Permute(s.ToString(), 0, h))).ToList();
-                hashesB = hashesB.Select(s => int.Parse(Permute(s.ToString(), 0, h))).ToList();
+                hashesA = hashesA.Select(s => int.Parse(Permute(s.ToString(), 0, s.ToString().Length-1, seed))).ToList();
+                hashesB = hashesB.Select(s => int.Parse(Permute(s.ToString(), 0, s.ToString().Length-1, seed))).ToList();
                 
                 minA.Add(hashesA.Min());
                 minB.Add(hashesB.Min());
@@ -90,20 +91,55 @@ namespace NearDuplicate
             return JaccardSimilarity(minA, minB);
         }
 
-        private string Permute(string s, int l, int r)
+        private string Permute(string s, int l, int r, int seed)
         {
-            r %= s.Length;
+            this.count = 1;
+            int hashPreCount = 1;
+            //Count the amount of diffrent premutation for the string
+            for(int i = 1; i < s.ToString().Length+1; i++){
+                    hashPreCount *= i;
+            }   
+            //make the seed in range of premutations
+            seed = seed % hashPreCount;
 
             if (l == r)
             {
                 // Console.WriteLine(s);
+                if(seed == this.count)
+                    return s;
+                this.count++;
             }
             else
             {
                 for (var i = l; i <= r; i++)
                 {
                     s = Swap(s, l, i);
-                    s = Permute(s, l+1, r);
+                    s = Permute(s, l+1, r, seed, count);
+                    if(seed == count)
+                        return s;
+                    s = Swap(s, l, i);
+                }
+            }
+
+            return s;
+        }
+        private string Permute(string s, int l, int r, int seed, int count)
+        {
+            if (l == r)
+            {
+                // Console.WriteLine(s);
+                if(seed == this.count)
+                    return s;
+                this.count++;
+            }
+            else
+            {
+                for (var i = l; i <= r; i++)
+                {
+                    s = Swap(s, l, i);
+                    s = Permute(s, l+1, r, seed, count);
+                    if(seed == this.count)
+                        return s;
                     s = Swap(s, l, i);
                 }
             }
