@@ -66,8 +66,11 @@ namespace NearDuplicate
             {
                 var seed = rand.Next();
 
-                hashesA = hashesA.Select(s => int.Parse(Permute(s.ToString(), 0, s.ToString().Length-1, seed))).ToList();
-                hashesB = hashesB.Select(s => int.Parse(Permute(s.ToString(), 0, s.ToString().Length-1, seed))).ToList();
+                Console.WriteLine(GetPremutate("12345678", 0, seed));
+                Console.WriteLine(GetPremutate("12345678", 0, seed));
+
+                hashesA = hashesA.Select(s => int.Parse(GetPremutate(s.ToString(), 0, seed))).ToList();
+                hashesB = hashesB.Select(s => int.Parse(GetPremutate(s.ToString(), 0, seed))).ToList();
                 
                 minA.Add(hashesA.Min());
                 minB.Add(hashesB.Min());
@@ -91,7 +94,7 @@ namespace NearDuplicate
             return JaccardSimilarity(minA, minB);
         }
 
-        private string Permute(string s, int l, int r, int seed)
+      /*  private string Permute(string s, int l, int r, int seed)
         {
             this.count = 1;
             int hashPreCount = 1;
@@ -145,6 +148,26 @@ namespace NearDuplicate
             }
 
             return s;
+        }*/
+
+
+        private string GetPremutate(string s, int index, int seed)
+        {
+            int size = PremutateSize(s.Length - index);
+            s = Swap(s, index, index + Convert.ToInt32( Math.Floor(((float)(seed % size) / (float)size) * (float)(s.Length - index))));
+            index++;
+            if (index == s.Length)
+                return s;
+            return GetPremutate(s, index, seed);
+                
+        }
+
+        private int PremutateSize(int size)
+        {
+            int resualt = 1;
+            for (int i = 1; i < size+1; i++)
+                resualt *= i;
+            return resualt;
         }
 
         private string Swap(string s, int i, int j)
