@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCrawler", "WebCrawler\WebCrawler.csproj", "{0087E8C2-44B7-4C50-A821-E6367739B6DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotsTxtReader", "..\RobotsTxtReader\RobotsTxtReader\RobotsTxtReader.csproj", "{24F98EED-CE7A-4161-87BA-70C180FBD7E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0087E8C2-44B7-4C50-A821-E6367739B6DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0087E8C2-44B7-4C50-A821-E6367739B6DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0087E8C2-44B7-4C50-A821-E6367739B6DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0087E8C2-44B7-4C50-A821-E6367739B6DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24F98EED-CE7A-4161-87BA-70C180FBD7E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24F98EED-CE7A-4161-87BA-70C180FBD7E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24F98EED-CE7A-4161-87BA-70C180FBD7E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24F98EED-CE7A-4161-87BA-70C180FBD7E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5AFB17A9-0D05-41B7-85B8-2B6DACD6EF0C}
+	EndGlobalSection
+EndGlobal
